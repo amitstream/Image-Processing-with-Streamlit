@@ -9,35 +9,10 @@ import streamlit as st
 from PIL import Image
 import cv2 
 import numpy as np
-import tempfile
+
 
 
 def main():
-    face_detection_AIClub()
-
-def face_detection_AIClub():
-    
-    st.header("AIClub Face Detection using haarcascade")
-    uploaded_file=st.file_uploader("Show us your party photos!!")
-    if uploaded_file is not None:
-        print("AIClub: At start")
-        tfile=tempfile.NamedTemporaryFile(delete=False)
-        print("AIClub: Step 10")
-        tfile.write(uploaded_file.read())
-        image2 = cv2.imread(tfile.name)
-        print("AIClub: Step 30")
-        face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-        faces = face_cascade.detectMultiScale(image2)
-        print(f"AIClub: {len(faces)} faces detected in the image: {faces}.")
-        print("AIClub: Step 50")
-        for x, y, width, height in faces:
-            cv2.rectangle(image2, (x, y), (x + width, y + height), color=(255, 0, 0), thickness=2)
-        #cv2.imwrite(tfile.name, image2)
-        print("AIClub: Step 70")
-        st.image(image2, use_column_width=True,clamp = True)
-        print("AIClub: At end")
-
-def main_OLD():
 
     selected_box = st.sidebar.selectbox(
     'Choose one of the following',
@@ -147,7 +122,7 @@ def face_detection():
 
     face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
     faces = face_cascade.detectMultiScale(image2)
-    print(f"OLD {len(faces)} faces detected in the image.")
+    print(f"{len(faces)} faces detected in the image.")
     for x, y, width, height in faces:
         cv2.rectangle(image2, (x, y), (x + width, y + height), color=(255, 0, 0), thickness=2)
     
